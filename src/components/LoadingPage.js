@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Lottie from 'react-lottie';
-import * as welcome from './46837-welcome.json';
-import Login from './components/Login';
-import './App.css';
+import * as welcome from '../46837-welcome.json';
+import Login from './Login';
 
 const defaultOptions = {
   loop: true,
@@ -13,7 +12,7 @@ const defaultOptions = {
   },
 };
 
-function App() {
+function LoadingPage() {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
@@ -24,7 +23,7 @@ function App() {
   }, []);
 
   return (
-    <main className='container'>
+    <div>
       {loading ? (
         <Lottie
           options={defaultOptions}
@@ -35,8 +34,8 @@ function App() {
       ) : (
         <Login />
       )}
-    </main>
+    </div>
   );
 }
 
-export default App;
+export default LoadingPage;
