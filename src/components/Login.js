@@ -1,56 +1,88 @@
 import React, { useState } from 'react';
-import {
-  BrowserRouter as Router,
-  Switch,
-  Redirect,
-  Route,
-} from 'react-router-dom';
-import { useHistory } from 'react-router-dom';
-import { LoginApi } from '../utilities/LoginApi';
-import HomePage from './HomePage';
+import { Redirect } from 'react-router-dom';
+import { LoginApi } from '../utilities/API/LoginApi';
+import { isPhoneValidation } from '../utilities/common/helpers';
+import { isValidPassword } from '../utilities/common/helpers';
+import swal from 'sweetalert';
 
-function Login() {
-  const [login, setLogin] = useState({});
+function Login({ setToken }) {
+  const [phone, setPhone] = useState('');
+  const [password, setPassword] = useState('');
+  const [errPhoneMessage, setErrPhoneMessage] = useState('');
+  const [errPasswordMessage, setErrPasswordMessage] = useState('');
   const [redirectate, setRedirectate] = useState(false);
-  let history = useHistory();
+
+  console.log(password);
 
   const clickLogin = () => {
-    if (login) {
-      LoginApi(login).then((result) => {
-        let res = result;
-        if (res.user) {
-          console.log(res);
-          sessionStorage.setItem('user', res);
-          setRedirectate(true);
-          alert(`WELCOME BACK : ${res.user.name}`);
-        } else {
-          alert('YOU CAN NOT LOG IN :)');
-        }
-      });
+    if (phone !== '' && password !== '') {
+      if (errPhoneMessage === '' && errPasswordMessage === '') {
+        LoginApi({
+          email: 'user@user.com',
+          password: 12345678,
+        }).then((result) => {
+          if (result) {
+            let { user, token } = result;
+            console.log(result);
+            localStorage.setItem('token', JSON.stringify(token));
+            swal('Good job!', 'You Are Logged In!', 'success');
+            setToken('token');
+            setRedirectate(true);
+          } else {
+            swal('ERROR!', 'Check Your Internet Connection!', 'error');
+          }
+        });
+      }
+    } else {
+      alert('complete the fields');
     }
   };
 
-  const onChange = (e) => {
-    setLogin({ ...login, [e.target.name]: e.target.value });
+  const handlePhoneChanges = (e) => {
+    setPhone(e.target.value);
+    const result = isPhoneValidation(e.target.value);
+    if (e.target.value === '' || result.isValid) {
+      setErrPhoneMessage('');
+    } else {
+      setErrPhoneMessage(result.errMsg);
+    }
+  };
+
+  const handlePasswordChanges = (e) => {
+    console.log(e.target.value);
+    setPassword(e.target.value);
+    const result = isValidPassword(e.target.value);
+    if (e.target.value === '' || result.isValid) {
+      setErrPasswordMessage('');
+    } else {
+      setErrPasswordMessage(result.errMsg);
+      console.log(errPasswordMessage);
+    }
   };
 
   if (redirectate) {
-    return (
-      <Router>
-        <Switch>
-          <Route path='/home' component={HomePage} />;
-          <Redirect to={'/home'} />
-        </Switch>
-      </Router>
-    );
+    return <Redirect to={'/'} />;
   }
 
   return (
     <React.Fragment>
-      <h1 className='mt-5 mb-5 text-center'>Login </h1>
+      <h1
+        style={{
+          marginBottom: '5%',
+          marginTop: '4%',
+          backgroundColor: '#0bb17f',
+          padding: '5px',
+          borderRadius: '25px',
+          width: '27%',
+          textAlign: 'center',
+          color: '#fff',
+        }}
+      >
+        <strong>Login</strong>
+      </h1>
       <div
         style={{
-          backgroundColor: '#20c997',
+          backgroundColor: '#0bb17f',
           borderRadius: '25px',
           padding: '100px',
         }}
@@ -58,37 +90,55 @@ function Login() {
       >
         <div className='mb-3'>
           <label htmlFor='exampleInputEmail1' className='form-label'>
-            <strong style={{ color: 'white' }}>Email address</strong>
+            <strong style={{ color: 'white' }}>Phone Number</strong>
           </label>
           <input
-            type='text'
-            name='email'
+            type='tel'
+            value={phone}
+            name='phone'
             className='form-control'
             id='exampleInputEmail1'
-            onChange={onChange}
+            onChange={handlePhoneChanges}
           />
+          <span className='badge bg-warning text-dark w-75 p-1'>
+            {errPhoneMessage}
+          </span>
         </div>
         <div className='mb-3'>
           <label htmlFor='exampleInputPassword1' className='form-label'>
             <strong style={{ color: 'white' }}>Password</strong>
           </label>
           <input
+            value={password}
             type='password'
             name='password'
             className='form-control'
             id='exampleInputPassword1'
-            onChange={onChange}
+            onChange={handlePasswordChanges}
           />
+          <span className='badge bg-warning text-dark w-75 p-1'>
+            {errPasswordMessage}
+          </span>
         </div>
-        <button
-          type='submit'
-          style={{ backgroundColor: '#343a40', color: 'white' }}
-          className='btn px-5 mt-3'
-          onClick={clickLogin}
-        >
-          <strong>Submit</strong>
-        </button>
       </div>
+      <button
+        type='submit'
+        onClick={clickLogin}
+        style={{
+          marginBottom: '4%',
+          marginTop: '2%',
+          marginRight: '15%',
+          backgroundColor: '#0bb17f',
+          padding: '10px',
+          borderRadius: '25px',
+          width: '15%',
+          textAlign: 'center',
+          color: '#fff',
+        }}
+        className='float-right'
+      >
+        <strong>Submit</strong>
+      </button>
     </React.Fragment>
   );
 }

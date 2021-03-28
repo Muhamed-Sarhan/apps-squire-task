@@ -1,21 +1,17 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import Lottie from 'react-lottie';
-import { Redirect } from 'react-router-dom';
-import * as welcome from '../images/46837-welcome.json';
+import * as notFound from '../images/43391-404-error-page-not-found-confused-robot.json';
 
 const defaultOptions = {
   loop: true,
   autoplay: true,
-  animationData: welcome.default,
+  animationData: notFound.default,
   rendererSettings: {
     preserveAspectRatio: 'xMidYMid slice',
   },
 };
 
-function LoadingPage({ setIsLoading }) {
-  useEffect(() => {
-    setTimeout(() => setIsLoading(false), 4000);
-  }, []);
+function NotFound() {
   return (
     <div>
       <Lottie
@@ -28,4 +24,4 @@ function LoadingPage({ setIsLoading }) {
   );
 }
 
-export default LoadingPage;
+export default NotFound;
