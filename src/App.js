@@ -22,7 +22,11 @@ function App() {
     return <LoadingPage setIsLoading={setLoading} />;
   }
   if (!token) {
-    return <Login setToken={setToken} setToken={setToken} />;
+    return (
+      <main className='container'>
+        <Login setToken={setToken} setToken={setToken} />;
+      </main>
+    );
   }
 
   return (

@@ -33,10 +33,12 @@ const HomePage = () => {
     <div style={{ paddingTop: '4%' }}>
       <h1
         style={{
-          marginBottom: '4%',
+          marginBottom: '3%',
+          fontSize: '3vw',
+          marginTop: '2%',
           backgroundColor: '#0bb17f',
           padding: '5px',
-          borderRadius: '25px',
+          borderRadius: '30px',
           width: '27%',
           textAlign: 'center',
           color: '#fff',

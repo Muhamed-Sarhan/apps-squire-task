@@ -3,8 +3,8 @@ button {
 }
 .open-search {
   position: fixed;
-  right: 75px;
-  bottom: 50px;
+  right: 4%;
+  bottom: 5%;
 }
 
 .open-search button {

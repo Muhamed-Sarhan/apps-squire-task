@@ -48,6 +48,7 @@ const Update = () => {
         style={{
           marginBottom: '8%',
           marginTop: '4%',
+          fontSize: '2.7vw',
           backgroundColor: '#0bb17f',
           padding: '5px',
           borderRadius: '25px',
@@ -68,7 +69,9 @@ const Update = () => {
       >
         <div className='mb-3'>
           <label htmlFor='exampleFormControlInput1' className='form-label'>
-            <strong style={{ color: '#fff' }}>Post Title</strong>
+            <strong style={{ color: '#fff', fontSize: '1.5vw' }}>
+              Post Title
+            </strong>
           </label>
           <input
             onChange={handleChange}
@@ -81,7 +84,9 @@ const Update = () => {
         </div>
         <div className='mb-3'>
           <label htmlFor='exampleFormControlTextarea1' className='form-label'>
-            <strong style={{ color: '#fff' }}>Post Body</strong>
+            <strong style={{ color: '#fff', fontSize: '1.5vw' }}>
+              Post Body
+            </strong>
           </label>
           <textarea
             onChange={handleChange}
@@ -98,6 +103,7 @@ const Update = () => {
           style={{
             marginBottom: '4%',
             marginTop: '2%',
+            fontSize: '1.5vw',
             marginRight: '15%',
             backgroundColor: '#0bb17f',
             padding: '10px',

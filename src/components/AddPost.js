@@ -41,6 +41,7 @@ const Add = () => {
         style={{
           marginBottom: '8%',
           marginTop: '4%',
+          fontSize: '2.7vw',
           backgroundColor: '#0bb17f',
           padding: '5px',
           borderRadius: '25px',
@@ -61,7 +62,9 @@ const Add = () => {
       >
         <div className='mb-3'>
           <label htmlFor='exampleFormControlInput1' className='form-label'>
-            <strong style={{ color: '#fff' }}>Post Title</strong>
+            <strong style={{ color: '#fff', fontSize: '1.5vw' }}>
+              Post Title
+            </strong>
           </label>
           <input
             onChange={handleChange}
@@ -74,7 +77,9 @@ const Add = () => {
         </div>
         <div className='mb-3'>
           <label htmlFor='exampleFormControlTextarea1' className='form-label'>
-            <strong style={{ color: '#fff' }}>Post Body</strong>
+            <strong style={{ color: '#fff', fontSize: '1.5vw' }}>
+              Post Body
+            </strong>
           </label>
           <textarea
             onChange={handleChange}
@@ -92,6 +97,7 @@ const Add = () => {
           marginBottom: '4%',
           marginTop: '2%',
           marginRight: '15%',
+          fontSize: '1.5vw',
           backgroundColor: '#0bb17f',
           padding: '10px',
           borderRadius: '25px',

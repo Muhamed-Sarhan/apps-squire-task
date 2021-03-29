@@ -34,7 +34,7 @@ function Login({ setToken }) {
         });
       }
     } else {
-      alert('complete the fields');
+      swal('ERROR!', 'You Should Fill All Inputs!', 'error');
     }
   };
 
@@ -68,11 +68,12 @@ function Login({ setToken }) {
     <React.Fragment>
       <h1
         style={{
-          marginBottom: '5%',
-          marginTop: '4%',
+          marginBottom: '3%',
+          fontSize: '3vw',
+          marginTop: '2%',
           backgroundColor: '#0bb17f',
           padding: '5px',
-          borderRadius: '25px',
+          borderRadius: '30px',
           width: '27%',
           textAlign: 'center',
           color: '#fff',
@@ -84,13 +85,15 @@ function Login({ setToken }) {
         style={{
           backgroundColor: '#0bb17f',
           borderRadius: '25px',
-          padding: '100px',
+          padding: '10%',
         }}
         className='w-75 m-auto'
       >
         <div className='mb-3'>
           <label htmlFor='exampleInputEmail1' className='form-label'>
-            <strong style={{ color: 'white' }}>Phone Number</strong>
+            <strong style={{ color: 'white', fontSize: '1.5vw' }}>
+              Phone Number
+            </strong>
           </label>
           <input
             type='tel'
@@ -100,13 +103,18 @@ function Login({ setToken }) {
             id='exampleInputEmail1'
             onChange={handlePhoneChanges}
           />
-          <span className='badge bg-warning text-dark w-75 p-1'>
+          <span
+            className='badge bg-warning text-dark w-75 p-1'
+            style={{ fontSize: '1.08vw' }}
+          >
             {errPhoneMessage}
           </span>
         </div>
         <div className='mb-3'>
           <label htmlFor='exampleInputPassword1' className='form-label'>
-            <strong style={{ color: 'white' }}>Password</strong>
+            <strong style={{ color: 'white', fontSize: '1.5vw' }}>
+              Password
+            </strong>
           </label>
           <input
             value={password}
@@ -116,7 +124,10 @@ function Login({ setToken }) {
             id='exampleInputPassword1'
             onChange={handlePasswordChanges}
           />
-          <span className='badge bg-warning text-dark w-75 p-1'>
+          <span
+            className='badge bg-warning text-dark w-75 p-1'
+            style={{ fontSize: '1.08vw' }}
+          >
             {errPasswordMessage}
           </span>
         </div>
@@ -125,13 +136,14 @@ function Login({ setToken }) {
         type='submit'
         onClick={clickLogin}
         style={{
-          marginBottom: '4%',
+          fontSize: '1.5vw',
+          marginBottom: '1%',
           marginTop: '2%',
           marginRight: '15%',
           backgroundColor: '#0bb17f',
-          padding: '10px',
-          borderRadius: '25px',
-          width: '15%',
+          padding: '2%',
+          borderRadius: '35px',
+          width: '20%',
           textAlign: 'center',
           color: '#fff',
         }}
